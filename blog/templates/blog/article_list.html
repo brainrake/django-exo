@@ -1,0 +1,69 @@
+{% extends 'blog/base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+<h2><a href="{%url blog.views.articles %}">{% trans 'Articles' %}</a></h2>
+
+<div class="blog-date-drilldown">
+    {% if years %}
+    <span class="meta">{% trans 'year' %}</span>
+    {% for iter_year in years %}
+    {% with iter_year|date:"Y" as iter_year %}
+    {% if year != iter_year %}
+        <a href='{% url blog.views.articles iter_year %}'>{{iter_year}}</a>
+    {% else %}
+        {{year}}
+    {% endif %}
+    {% endwith %}
+    {% endfor %}
+    {% endif %}
+
+    {% if months %}
+    &nbsp;&nbsp;
+    <span class="meta">{% trans 'month' %}</span>
+    {% for iter_month in months %}
+    {% with iter_month|date:"m" as iter_month %}
+    {% if month != iter_month %}
+        <a href='{% url blog.views.articles year iter_month %}'>{{iter_month}}</a>
+    {% else %}
+        {{month}}
+    {% endif %}
+    {% endwith %}
+    {% endfor %}
+    {% endif %}
+
+    {% if days %}
+    &nbsp;&nbsp;
+    <span class="meta">{% trans 'day' %}</span>
+    {% for iter_day in days %}
+    {% with iter_day|date:"d" as iter_day %}
+    {% if day != iter_day %}
+        <a href='{% url blog.views.articles year month iter_day%}'>{{iter_day}}</a>
+    {% else %}
+        {{day}}
+    {% endif %}
+    {% endwith %}
+    {% endfor %}
+    {% endif %}
+</div>
+
+<br/>
+
+<div class="blog-article-list">
+{% for article in object_list %}
+    <div class="blog-article-list-item">
+        <h3><a href="{{article.get_absolute_url}}">{{article.title}}</a></h3>
+        <div class="meta">by <a>{{article.user}}</a> on {{article.date_published|date}}</div>
+        {{article.content|linebreaks|truncatewords:20}}
+    </div>
+    <br/>
+{% empty %}
+    {% trans 'No results.' %}
+{% endfor %}
+</div>
+
+<br/>
+{% include 'util/paginator.inc.html' %}
+
+{% endblock %}

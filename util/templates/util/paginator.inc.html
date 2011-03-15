@@ -1,0 +1,27 @@
+{% load i18n %}
+<div class="paginator">
+    {% if object_list.paginator_page.has_previous %}
+        <a href="?page={{ object_list.paginator_page.previous_page_number }}">&laquo;previous</a>
+    {% endif %}
+
+    <span>
+        {% for i in object_list.paginator_page.paginator.page_range %}
+            {% if i|add:10 > object_list.paginator_page.number %}
+                {% if i < object_list.paginator_page.number|add:10 %}
+                    {% if object_list.paginator_page.number != i %}
+                        <a href="?page={{i}}">{{i}}</a>
+                    {% else %}
+                        {{i}}
+                    {% endif %}
+                {% else %}
+                    {% ifchanged object_list.page %} .. <a href="?page={{object_list.paginator_page.paginator.num_pages}}">{{object_list.paginator_page.paginator.num_pages}}</a>{% endifchanged %}
+                    {% endif %}
+            {% else %}
+                {% ifchanged object_list.page %} <a href="?page={{1}}">{{1}}</a> ..{%endifchanged %}
+            {% endif %}
+        {% endfor %}
+    </span>
+    {% if object_list.paginator_page.has_next %}
+        <a href="?page={{ object_list.paginator_page.next_page_number }}">next&raquo;</a>
+    {% endif %}
+</div>

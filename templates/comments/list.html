@@ -1,0 +1,11 @@
+{% load i18n%}
+<br/>
+<h3>{{comment_list|length}} {% trans 'Comment' %}</h3>
+<div class="comment-list">
+{% for comment in comment_list %}
+    <div class="comment">
+        <p class="meta"><a>{{comment.user_name}}</a> on {{comment.submit_date|date}}</p>
+        <blockquote>{{comment.comment}}</blockquote>
+    </div>
+{% endfor %}
+</div>

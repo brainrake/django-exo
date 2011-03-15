@@ -1,0 +1,18 @@
+{% comment %}
+TODO:
+{% load menu %}
+{% if not menu %}{% load_menu %}{% endif %}
+{% endcomment %}
+
+{% for menuitem in menu.menuitem_set.all %}
+<li>
+    <a href="{{menuitem.url}}">{{menuitem.title}}</a>
+    {% if menuitem.submenuitem_set.all %}
+    <ul>
+    {% for submenuitem in menuitem.submenuitem_set.all %}
+        <li><a href="{{submenuitem.url}}">{{submenuitem.title}}</a></li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+</li>
+{% endfor %}

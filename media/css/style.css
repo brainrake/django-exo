@@ -1,0 +1,30 @@
+/* RESET and utilities */
+
+/* only underline hovered links */
+a, a:visited{text-decoration:none;}
+a:hover{text-decoration:underline; }
+
+/* align th, td; no borders */
+th,td{border:none; text-align:left; vertical-align:top;}
+
+
+/* use these for floating */
+.left{float:left;} .right{float:right;} .clear{clear:both;}
+
+
+
+
+/* BASE STYLE */
+
+/* header, body, footer colors&padding */
+html{background:#eee;}
+#hd{background:#ddd;padding:20px;}
+#bd{background:#fff;padding:20px;}
+#ft{background:#ddd;color:#888;padding:20px;}
+
+/* link color */
+a{color:#369;}
+
+/* metadata color */
+.meta{color:#888}
+

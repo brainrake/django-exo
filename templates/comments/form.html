@@ -1,0 +1,19 @@
+{% load comments i18n %}
+<br/>
+<h3>{% trans 'post comment' %}</h3>
+<form class="comment-form" action="{% comment_form_target %}" method="post">{% csrf_token %}
+    {{form.content_type}}
+    {{form.object_pk}}
+    {{form.timestamp}}
+    {{form.security_hash}}
+    {% if not user.is_authenticated %}
+    <p>{{form.name.label_tag}}</p>
+    <p>{{form.name}}</p>
+    <p>{{form.email.label_tag}}</p>
+    <p>{{form.email}}</p>
+    {% endif %}
+    <p>{{form.comment.label_tag}}</p>
+    <p><textarea id="id_comment" rows="3" cols="40" name="comment"></textarea></p>
+    <p><input type="submit" name="post" class="submit-post" value="{% trans 'post' %}"></p>
+    <p style="display:none;"><label for="id_honeypot">If you enter anything in this field your comment will be treated as spam</label>{{form.honeypot}}</p>
+</form>

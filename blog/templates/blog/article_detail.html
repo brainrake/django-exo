@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% load i18n comments %}
+
+{% block content %}
+<h2><a href="{{object.get_absolute_url}}">{{object.title}}</a></h2>
+<div class="meta">by <a>{{object.user}}</a> on {{object.date_published|date}}</div>
+<br/>
+<div class="blog-object-content">{{object.content|linebreaks}}</div>
+
+{% if object.enable_comments %}
+{% render_comment_form for object %}
+{% render_comment_list for object %}
+{% endif %}
+
+{% endblock %}

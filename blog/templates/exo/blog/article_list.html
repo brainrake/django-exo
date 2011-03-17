@@ -1,9 +1,9 @@
-{% extends 'blog/base.html' %}
+{% extends 'exo/blog/base.html' %}
 {% load i18n %}
 
 {% block content %}
 
-<h2><a href="{%url blog.views.articles %}">{% trans 'Articles' %}</a></h2>
+<h2><a href="{%url exo.blog.views.articles %}">{% trans 'Articles' %}</a></h2>
 
 <div class="blog-date-drilldown">
     {% if years %}
@@ -11,7 +11,7 @@
     {% for iter_year in years %}
     {% with iter_year|date:"Y" as iter_year %}
     {% if year != iter_year %}
-        <a href='{% url blog.views.articles iter_year %}'>{{iter_year}}</a>
+        <a href='{% url exo.blog.views.articles iter_year %}'>{{iter_year}}</a>
     {% else %}
         {{year}}
     {% endif %}
@@ -25,7 +25,7 @@
     {% for iter_month in months %}
     {% with iter_month|date:"m" as iter_month %}
     {% if month != iter_month %}
-        <a href='{% url blog.views.articles year iter_month %}'>{{iter_month}}</a>
+        <a href='{% url exo.blog.views.articles year iter_month %}'>{{iter_month}}</a>
     {% else %}
         {{month}}
     {% endif %}
@@ -39,7 +39,7 @@
     {% for iter_day in days %}
     {% with iter_day|date:"d" as iter_day %}
     {% if day != iter_day %}
-        <a href='{% url blog.views.articles year month iter_day%}'>{{iter_day}}</a>
+        <a href='{% url exo.blog.views.articles year month iter_day%}'>{{iter_day}}</a>
     {% else %}
         {{day}}
     {% endif %}
@@ -51,7 +51,7 @@
 <br/>
 
 <div class="blog-article-list">
-{% for article in object_list %}
+{% for article in article_list %}
     <div class="blog-article-list-item">
         <h3><a href="{{article.get_absolute_url}}">{{article.title}}</a></h3>
         <div class="meta">by <a>{{article.user}}</a> on {{article.date_published|date}}</div>

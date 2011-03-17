@@ -1,7 +1,7 @@
 from django.shortcuts import *
 from django.template import RequestContext
 from django.core.paginator import Paginator
-from util import paginate
+from exo.util import paginate
 
 from models import *
 
@@ -11,7 +11,7 @@ def index(request, template=None):
     articles = Article.online.all()[:5]
 
     c = RequestContext(request, {
-        'object_list':articles
+        'article_list':articles
     })
     return render_to_response(template or 'blog/index.html',c)
 
@@ -32,7 +32,7 @@ def articles(request, year=None, month=None, day=None, template=None):
                 articles = articles.filter(date_published__day=day)
 
     c = RequestContext(request, {
-        'object_list':paginate(request, articles, 20),
+        'article_list':paginate(request, articles, 20),
         'year':year,
         'month':month,
         'day':day,
@@ -40,7 +40,7 @@ def articles(request, year=None, month=None, day=None, template=None):
         'months':months,
         'days':days,
     })
-    return render_to_response(template or 'blog/article_list.html',c)
+    return render_to_response(template or 'exo/blog/article_list.html',c)
 
 
 
@@ -54,5 +54,5 @@ def article(request, year=None, month=None, day=None, slug=None, template=None):
         'month':month,
         'day':day,
     })
-    return render_to_response(template or 'blog/article_detail.html', c)
+    return render_to_response(template or 'exo/blog/article_detail.html', c)
 

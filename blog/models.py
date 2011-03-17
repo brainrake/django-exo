@@ -49,6 +49,6 @@ class Article(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('blog.views.article', [self.date_published.strftime('%Y'), self.date_published.strftime('%m'), self.date_published.strftime('%d'), self.slug])
+        return ('exo.blog.views.article', [self.date_published.strftime('%Y'), self.date_published.strftime('%m'), self.date_published.strftime('%d'), self.slug])
 
 

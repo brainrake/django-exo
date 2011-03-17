@@ -92,15 +92,15 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
 
-    'app',
+    'exo.app',
 
-    'blog',
-    'gallery',
-    'menu',
+    'exo.blog',
+    'exo.gallery',
+    'exo.menu',
 
-    'conf',
+    'exo.conf',
 
-    'util',
+    'exo.util',
 
 )
 

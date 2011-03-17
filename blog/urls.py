@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
 from feeds import *
 
-urlpatterns = patterns('blog.views',
+urlpatterns = patterns('exo.blog.views',
     #all articles
     ('^$','articles'),
 

@@ -1,9 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'exo/base.html' %}
 {% load i18n %}
 {% block content %}
 <h1>{% trans 'Latest News' %}</h1>
 
-{% for article in object_list %}
+{% for article in article_list %}
     <div class="blog-article-list-item">
         <h3><a href="{{article.get_absolute_url}}">{{article.title}}</a></h3>
         <div class="meta">by <b>{{article.user}}</b> on {{article.date_published|date}}</div>
@@ -11,12 +11,10 @@
     </div>
     <a href="{{object.get_absolute_url}}">more...</a>
     <br/>
-{% empty %}
-    {% trans 'No results.' %}
 {% endfor %}
 <br/>
 <br/>
-<a href="{%url blog.views.articles%}">older articles...</a>
+<a href="{%url exo.blog.views.articles%}">{% trans 'older articles...' %}</a>
 {% endblock %}
 
 
